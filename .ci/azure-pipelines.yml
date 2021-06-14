@@ -1,0 +1,14 @@
+trigger:
+  - main
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  buildConfiguration: 'Release'
+
+steps:
+  - task: CmdLine@2
+    displayName: 'Nuke Build'
+    inputs:
+      script: './build.cmd Push --configuration $(buildConfiguration)

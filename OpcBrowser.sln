@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31402.337
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BF37FD4B-B749-470F-9A16-9D95ACB4EBF8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpcDaBrowser", "src\OpcDaBrowser\OpcDaBrowser.csproj", "{CD714F82-6C50-4BFC-8E16-4A01309DE035}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NukeBuild", "nuke\NukeBuild.csproj", "{C0AF8E80-9423-43E8-8B21-E3763A3A78B3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{43EF4940-18D6-41DF-A63C-222A99377AE3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CD714F82-6C50-4BFC-8E16-4A01309DE035}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD714F82-6C50-4BFC-8E16-4A01309DE035}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD714F82-6C50-4BFC-8E16-4A01309DE035}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD714F82-6C50-4BFC-8E16-4A01309DE035}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0AF8E80-9423-43E8-8B21-E3763A3A78B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0AF8E80-9423-43E8-8B21-E3763A3A78B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CD714F82-6C50-4BFC-8E16-4A01309DE035} = {BF37FD4B-B749-470F-9A16-9D95ACB4EBF8}
+		{C0AF8E80-9423-43E8-8B21-E3763A3A78B3} = {43EF4940-18D6-41DF-A63C-222A99377AE3}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {789EA95A-2AA5-4223-BB15-950DA8E6BCA4}
+	EndGlobalSection
+EndGlobal
