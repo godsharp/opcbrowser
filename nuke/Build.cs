@@ -86,11 +86,11 @@ class Build : NukeBuild
         .Executes(() =>
         {
             var version = Solution.GetProject("OpcDaBrowser").GetProperty("Version");
-            GlobDirectories(PublishDirectory / "OpcDaBrowser", "*")
+            GlobDirectories(OutputDirectory / "OpcDaBrowser", "*")
                 .ForEach(x =>
                 {
                     GlobFiles(x, "*.pdb").ForEach(DeleteFile);
-                    var file = PublishDirectory / $"OpcDaBrowser-v{version}-{AzurePipelines.BuildId}-{new DirectoryInfo(x).Name}.zip";
+                    var file = OutputDirectory / $"OpcDaBrowser-v{version}-{AzurePipelines.BuildId}-{new DirectoryInfo(x).Name}.zip";
                     ZipFile.CreateFromDirectory(x, file);
                     CopyFileToDirectory(file, ArtifactsDirectory / "app", FileExistsPolicy.OverwriteIfNewer);
                 });
