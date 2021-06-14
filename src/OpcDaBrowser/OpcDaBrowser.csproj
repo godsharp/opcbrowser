@@ -15,6 +15,9 @@
         <Copyright>GodSharp</Copyright>
         <Company>GodSharp</Company>
         <ApplicationIcon>icon.ico</ApplicationIcon>
+        <NoWarn>$(NoWarn);1591</NoWarn>
+        <SatelliteResourceLanguages>None</SatelliteResourceLanguages>
+        <OutputPath>$(SolutionDir)output\$(AssemblyName)\</OutputPath>
     </PropertyGroup>
 
     <ItemGroup>
