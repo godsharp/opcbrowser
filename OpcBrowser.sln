@@ -11,6 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NukeBuild", "nuke\NukeBuild
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{43EF4940-18D6-41DF-A63C-222A99377AE3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ci", "ci", "{1EE38B7D-8D28-4748-8763-45BF2392CF28}"
+	ProjectSection(SolutionItems) = preProject
+		.ci\azure-pipelines.yml = .ci\azure-pipelines.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
