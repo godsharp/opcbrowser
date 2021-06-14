@@ -11,4 +11,4 @@ steps:
   - task: CmdLine@2
     displayName: 'Nuke Build'
     inputs:
-      script: './build.cmd UploadArtifacts --configuration $(buildConfiguration)'
+      script: './build.cmd Deploy --configuration $(buildConfiguration)'

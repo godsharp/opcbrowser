@@ -1,20 +1,27 @@
 using System;
 using System.IO;
 using System.IO.Compression;
+using System.Linq;
+using System.Threading.Tasks;
 using Nuke.Common;
 using Nuke.Common.CI;
 using Nuke.Common.CI.AzurePipelines;
+using Nuke.Common.CI.GitHubActions;
 using Nuke.Common.Execution;
+using Nuke.Common.Git;
 using Nuke.Common.IO;
 using Nuke.Common.ProjectModel;
+using Nuke.Common.Tools.GitHub;
+using Nuke.Common.Tools.GitVersion;
 using Nuke.Common.Tools.MSBuild;
 using Nuke.Common.Utilities.Collections;
+using Octokit;
 using static Nuke.Common.IO.FileSystemTasks;
 using static Nuke.Common.IO.PathConstruction;
 using static Nuke.Common.Tools.MSBuild.MSBuildTasks;
 
 [CheckBuildProjectConfigurations]
-class Build : NukeBuild
+partial class Build : NukeBuild
 {
     /// Support plugins are available for:
     ///   - JetBrains ReSharper        https://nuke.build/resharper
@@ -27,9 +34,15 @@ class Build : NukeBuild
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
     readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
 
+    [Parameter("GitHub Authentication Token")]
+    readonly string GitHubAuthenticationToken;
+
     [Solution] readonly Solution Solution;
+    [GitVersion] readonly GitVersion GitVersion;
+    [GitRepository] readonly GitRepository GitRepository;
 
     [CI] readonly AzurePipelines AzurePipelines;
+    [CI] readonly GitHubActions GitHubActions;
 
     AbsolutePath SourceDirectory => RootDirectory / "src";
     AbsolutePath OutputDirectory => RootDirectory / "output";
@@ -99,10 +112,12 @@ class Build : NukeBuild
     Target UploadArtifacts => _ => _
         .DependsOn(Zip)
         .OnlyWhenStatic(() => IsServerBuild)
+        .Description("Upload Artifacts")
         .Executes(() =>
         {
+            Logger.Info("Upload artifacts to azure...");
             AzurePipelines
                 .UploadArtifacts("artifacts", "artifacts", ArtifactsDirectory);
+            Logger.Info("Upload artifacts to azure finished.");
         });
-
 }
