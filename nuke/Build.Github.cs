@@ -13,7 +13,7 @@ partial class Build
 {
     Target Deploy => _ => _
         .DependsOn(UploadArtifacts)
-        .Requires(() => GitHubAuthenticationToken)
+        //.Requires(() => GitHubAuthenticationToken)
         .OnlyWhenStatic(() => IsServerBuild)
         .OnlyWhenDynamic(() => GitVersion.BranchName.Equals("main") || GitVersion.BranchName.Equals("origin/main"))
         .Executes(async () =>
