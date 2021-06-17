@@ -30,9 +30,9 @@ partial class Build
         .WhenSkipped(DependencyBehavior.Execute)
         .OnlyWhenStatic(() => IsServerBuild && HostType == HostType.GitHubActions)
         .OnlyWhenDynamic(() => GitVersion.BranchName.Equals("main") || GitVersion.BranchName.Equals("origin/main"))
-        .Requires(() => GhAccessToken)
         .Executes(async () =>
         {
+            if(string.IsNullOrWhiteSpace(GhAccessToken)) ControlFlow.Fail($"{nameof(GhAccessToken)} is null");
             Logger.Info("Release to github...");
             await PublishAndUploadToGitHubRelease(GitVersion);
             Logger.Info("Release to github finished.");
