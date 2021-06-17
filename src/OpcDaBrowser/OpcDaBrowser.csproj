@@ -3,6 +3,7 @@
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
 <!--        <TargetFramework>netcoreapp3.1-windows</TargetFramework>-->
+<!--        <TargetFrameworks>net40;</TargetFrameworks>-->
         <TargetFramework>net40</TargetFramework>
         <UseWindowsForms>true</UseWindowsForms>
         <LangVersion>latestmajor</LangVersion>
@@ -16,7 +17,14 @@
         <ApplicationIcon>icon.ico</ApplicationIcon>
         <NoWarn>$(NoWarn);1591</NoWarn>
         <SatelliteResourceLanguages>None</SatelliteResourceLanguages>
-        <OutputPath>$(SolutionDir)output\$(AssemblyName)\</OutputPath>
+        <OutputPath>..\..\output\$(AssemblyName)\</OutputPath>
+        <Publishable>True</Publishable>
+        <DeployOnBuild>True</DeployOnBuild>
+        <IsPublishable>True</IsPublishable>
+        <WebPublishMethod>FileSystem</WebPublishMethod>
+        <PublishProvider>FileSystem</PublishProvider>
+        <PublishUrl>..\..\publish\$(AssemblyName)\$(TargetFramework)</PublishUrl>
+        <SelfContained>false</SelfContained>
     </PropertyGroup>
 
     <ItemGroup>
