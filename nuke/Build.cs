@@ -39,7 +39,7 @@ partial class Build : NukeBuild
     [Solution] readonly Solution Solution;
     
     [GitRepository] readonly GitRepository GitRepository;
-    [GitVersion(Framework = "net50", NoFetch = true)] readonly GitVersion GitVersion;
+    [GitVersion(Framework = "net5.0", NoFetch = true)] readonly GitVersion GitVersion;
 
     [CI] readonly AzurePipelines AzurePipelines;
     [CI] readonly GitHubActions GitHubActions;
