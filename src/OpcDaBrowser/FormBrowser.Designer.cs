@@ -32,11 +32,11 @@ namespace OpcDaBrowser
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBrowser));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,23 +49,33 @@ namespace OpcDaBrowser
             this.tsmiNewClient = new System.Windows.Forms.ToolStripMenuItem();
             this.groupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addSelectedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.removeItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.removeAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiRemoveItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiRemoveAll = new System.Windows.Forms.ToolStripMenuItem();
+            this.componentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiAutomation = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiOpenNetApi = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tsslOpcServerStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsslComponent = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsmiVersion = new System.Windows.Forms.ToolStripStatusLabel();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiWriteValueSync = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiWriteValueAsync = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiReadValueSync = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiReadValueAsync = new System.Windows.Forms.ToolStripMenuItem();
             dataGridView1 = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize) (this.splitContainer1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize) (dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(dataGridView1)).BeginInit();
             this.statusStrip1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Column1
@@ -93,8 +103,8 @@ namespace OpcDaBrowser
             // 
             this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Column3.DataPropertyName = "Quality";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column3.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column3.DefaultCellStyle = dataGridViewCellStyle17;
             this.Column3.FillWeight = 60F;
             this.Column3.HeaderText = "Quality";
             this.Column3.MinimumWidth = 60;
@@ -108,8 +118,8 @@ namespace OpcDaBrowser
             // 
             this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Column4.DataPropertyName = "Timestamp";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle18;
             this.Column4.HeaderText = "Timestamp";
             this.Column4.MinimumWidth = 130;
             this.Column4.Name = "Column4";
@@ -122,8 +132,8 @@ namespace OpcDaBrowser
             // 
             this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Column5.DataPropertyName = "Counter";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column5.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column5.DefaultCellStyle = dataGridViewCellStyle19;
             this.Column5.FillWeight = 60F;
             this.Column5.HeaderText = "Counter";
             this.Column5.MinimumWidth = 60;
@@ -135,7 +145,10 @@ namespace OpcDaBrowser
             // menuStrip1
             // 
             this.menuStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {this.serverToolStripMenuItem, this.groupToolStripMenuItem});
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.serverToolStripMenuItem,
+            this.groupToolStripMenuItem,
+            this.componentToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(734, 24);
@@ -144,7 +157,10 @@ namespace OpcDaBrowser
             // 
             // serverToolStripMenuItem
             // 
-            this.serverToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.tsmiConnect, this.tsmiDisconnect, this.tsmiNewClient});
+            this.serverToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiConnect,
+            this.tsmiDisconnect,
+            this.tsmiNewClient});
             this.serverToolStripMenuItem.Name = "serverToolStripMenuItem";
             this.serverToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
             this.serverToolStripMenuItem.Text = "Server";
@@ -172,7 +188,10 @@ namespace OpcDaBrowser
             // 
             // groupToolStripMenuItem
             // 
-            this.groupToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.addSelectedToolStripMenuItem, this.removeItemsToolStripMenuItem, this.removeAllToolStripMenuItem});
+            this.groupToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addSelectedToolStripMenuItem,
+            this.tsmiRemoveItem,
+            this.tsmiRemoveAll});
             this.groupToolStripMenuItem.Name = "groupToolStripMenuItem";
             this.groupToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
             this.groupToolStripMenuItem.Text = "Tags";
@@ -180,23 +199,48 @@ namespace OpcDaBrowser
             // addSelectedToolStripMenuItem
             // 
             this.addSelectedToolStripMenuItem.Name = "addSelectedToolStripMenuItem";
-            this.addSelectedToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.addSelectedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.addSelectedToolStripMenuItem.Text = "Add Node";
             this.addSelectedToolStripMenuItem.Click += new System.EventHandler(this.addSelectedToolStripMenuItem_Click);
             // 
-            // removeItemsToolStripMenuItem
+            // tsmiRemoveItem
             // 
-            this.removeItemsToolStripMenuItem.Name = "removeItemsToolStripMenuItem";
-            this.removeItemsToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
-            this.removeItemsToolStripMenuItem.Text = "Remove Item";
-            this.removeItemsToolStripMenuItem.Click += new System.EventHandler(this.removeItemsToolStripMenuItem_Click);
+            this.tsmiRemoveItem.Name = "tsmiRemoveItem";
+            this.tsmiRemoveItem.Size = new System.Drawing.Size(180, 22);
+            this.tsmiRemoveItem.Text = "Remove Item";
+            this.tsmiRemoveItem.Click += new System.EventHandler(this.removeItemsToolStripMenuItem_Click);
             // 
-            // removeAllToolStripMenuItem
+            // tsmiRemoveAll
             // 
-            this.removeAllToolStripMenuItem.Name = "removeAllToolStripMenuItem";
-            this.removeAllToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
-            this.removeAllToolStripMenuItem.Text = "Remove All";
-            this.removeAllToolStripMenuItem.Click += new System.EventHandler(this.removeAllToolStripMenuItem_Click);
+            this.tsmiRemoveAll.Name = "tsmiRemoveAll";
+            this.tsmiRemoveAll.Size = new System.Drawing.Size(180, 22);
+            this.tsmiRemoveAll.Text = "Remove All";
+            this.tsmiRemoveAll.Click += new System.EventHandler(this.removeAllToolStripMenuItem_Click);
+            // 
+            // componentToolStripMenuItem
+            // 
+            this.componentToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiAutomation,
+            this.tsmiOpenNetApi});
+            this.componentToolStripMenuItem.Name = "componentToolStripMenuItem";
+            this.componentToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
+            this.componentToolStripMenuItem.Text = "Component";
+            // 
+            // tsmiAutomation
+            // 
+            this.tsmiAutomation.Checked = true;
+            this.tsmiAutomation.CheckOnClick = true;
+            this.tsmiAutomation.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.tsmiAutomation.Name = "tsmiAutomation";
+            this.tsmiAutomation.Size = new System.Drawing.Size(140, 22);
+            this.tsmiAutomation.Text = "Automation";
+            // 
+            // tsmiOpenNetApi
+            // 
+            this.tsmiOpenNetApi.CheckOnClick = true;
+            this.tsmiOpenNetApi.Name = "tsmiOpenNetApi";
+            this.tsmiOpenNetApi.Size = new System.Drawing.Size(140, 22);
+            this.tsmiOpenNetApi.Text = "OpenNetApi";
             // 
             // splitContainer1
             // 
@@ -235,7 +279,7 @@ namespace OpcDaBrowser
             // 
             // imageList1
             // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer) (resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "tag1.png");
             this.imageList1.Images.SetKeyName(1, "tag2.png");
@@ -251,16 +295,21 @@ namespace OpcDaBrowser
             dataGridView1.BackgroundColor = System.Drawing.Color.White;
             dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
             dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {this.Column1, this.Column2, this.Column3, this.Column4, this.Column5});
+            dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column4,
+            this.Column5});
             dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.Location = new System.Drawing.Point(0, 0);
@@ -277,7 +326,11 @@ namespace OpcDaBrowser
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {this.tsslOpcServerStatus, this.toolStripStatusLabel1, this.tsmiVersion});
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsslOpcServerStatus,
+            this.tsslComponent,
+            this.toolStripStatusLabel1,
+            this.tsmiVersion});
             this.statusStrip1.Location = new System.Drawing.Point(0, 459);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(734, 22);
@@ -290,10 +343,17 @@ namespace OpcDaBrowser
             this.tsslOpcServerStatus.Size = new System.Drawing.Size(118, 17);
             this.tsslOpcServerStatus.Text = "toolStripStatusLabel1";
             // 
+            // tsslComponent
+            // 
+            this.tsslComponent.Name = "tsslComponent";
+            this.tsslComponent.Size = new System.Drawing.Size(241, 17);
+            this.tsslComponent.Spring = true;
+            this.tsslComponent.Text = "tsslComponent";
+            // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(483, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(241, 17);
             this.toolStripStatusLabel1.Spring = true;
             this.toolStripStatusLabel1.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
             // 
@@ -303,6 +363,44 @@ namespace OpcDaBrowser
             this.tsmiVersion.Size = new System.Drawing.Size(118, 17);
             this.tsmiVersion.Text = "toolStripStatusLabel2";
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiWriteValueSync,
+            this.tsmiWriteValueAsync,
+            this.tsmiReadValueSync,
+            this.tsmiReadValueAsync});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 114);
+            // 
+            // tsmiWriteValueSync
+            // 
+            this.tsmiWriteValueSync.Name = "tsmiWriteValueSync";
+            this.tsmiWriteValueSync.Size = new System.Drawing.Size(180, 22);
+            this.tsmiWriteValueSync.Text = "Write Value Sync";
+            this.tsmiWriteValueSync.Click += new System.EventHandler(this.tsmiWriteValueSync_Click);
+            // 
+            // tsmiWriteValueAsync
+            // 
+            this.tsmiWriteValueAsync.Name = "tsmiWriteValueAsync";
+            this.tsmiWriteValueAsync.Size = new System.Drawing.Size(180, 22);
+            this.tsmiWriteValueAsync.Text = "Write Value Async";
+            this.tsmiWriteValueAsync.Click += new System.EventHandler(this.tsmiWriteValueAsync_Click);
+            // 
+            // tsmiReadValueSync
+            // 
+            this.tsmiReadValueSync.Name = "tsmiReadValueSync";
+            this.tsmiReadValueSync.Size = new System.Drawing.Size(180, 22);
+            this.tsmiReadValueSync.Text = "Read Value Sync";
+            this.tsmiReadValueSync.Click += new System.EventHandler(this.tsmiReadValueSync_Click);
+            // 
+            // tsmiReadValueAsync
+            // 
+            this.tsmiReadValueAsync.Name = "tsmiReadValueAsync";
+            this.tsmiReadValueAsync.Size = new System.Drawing.Size(180, 22);
+            this.tsmiReadValueAsync.Text = "Read value Async";
+            this.tsmiReadValueAsync.Click += new System.EventHandler(this.tsmiReadValueAsync_Click);
+            // 
             // FormBrowser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -311,7 +409,7 @@ namespace OpcDaBrowser
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.statusStrip1);
-            this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.MinimumSize = new System.Drawing.Size(300, 200);
             this.Name = "FormBrowser";
@@ -319,18 +417,25 @@ namespace OpcDaBrowser
             this.Text = "Opc Da Browser";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormBrowser_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormBrowser_FormClosed);
+            this.SizeChanged += new System.EventHandler(this.FormBrowser_SizeChanged);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize) (this.splitContainer1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize) (dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(dataGridView1)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
+
+        private System.Windows.Forms.ToolStripMenuItem componentToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmiAutomation;
+        private System.Windows.Forms.ToolStripMenuItem tsmiOpenNetApi;
 
         private System.Windows.Forms.ToolStripStatusLabel tsmiVersion;
 
@@ -355,7 +460,13 @@ namespace OpcDaBrowser
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.ToolStripMenuItem addSelectedToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem removeItemsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem removeAllToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmiRemoveItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmiRemoveAll;
+        private System.Windows.Forms.ToolStripStatusLabel tsslComponent;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem tsmiWriteValueSync;
+        private System.Windows.Forms.ToolStripMenuItem tsmiWriteValueAsync;
+        private System.Windows.Forms.ToolStripMenuItem tsmiReadValueSync;
+        private System.Windows.Forms.ToolStripMenuItem tsmiReadValueAsync;
     }
 }

@@ -30,17 +30,24 @@ namespace OpcDaBrowser
         private void InitializeComponent()
         {
             this.lvServer = new System.Windows.Forms.ListView();
-            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnRefresh = new System.Windows.Forms.Button();
             this.rtbText = new System.Windows.Forms.RichTextBox();
             this.btnSelect = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lvServer
             // 
             this.lvServer.BackgroundImageTiled = true;
-            this.lvServer.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {this.columnHeader1, this.columnHeader2});
+            this.lvServer.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2});
             this.lvServer.FullRowSelect = true;
             this.lvServer.GridLines = true;
             this.lvServer.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
@@ -56,6 +63,7 @@ namespace OpcDaBrowser
             this.lvServer.UseCompatibleStateImageBehavior = false;
             this.lvServer.View = System.Windows.Forms.View.Details;
             this.lvServer.SelectedIndexChanged += new System.EventHandler(this.lvServer_SelectedIndexChanged);
+            this.lvServer.DoubleClick += new System.EventHandler(this.lvServer_DoubleClick);
             // 
             // columnHeader1
             // 
@@ -96,11 +104,56 @@ namespace OpcDaBrowser
             this.btnSelect.UseVisualStyleBackColor = true;
             this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.radioButton3);
+            this.panel1.Controls.Add(this.radioButton2);
+            this.panel1.Controls.Add(this.radioButton1);
+            this.panel1.Location = new System.Drawing.Point(93, 244);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(251, 26);
+            this.panel1.TabIndex = 5;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(3, 5);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(40, 17);
+            this.radioButton1.TabIndex = 0;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "1.0";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Checked = true;
+            this.radioButton2.Location = new System.Drawing.Point(49, 5);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(40, 17);
+            this.radioButton2.TabIndex = 1;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "2.0";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Location = new System.Drawing.Point(95, 5);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(40, 17);
+            this.radioButton3.TabIndex = 2;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "3.0";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            // 
             // FormServerList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(434, 441);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnSelect);
             this.Controls.Add(this.rtbText);
             this.Controls.Add(this.btnRefresh);
@@ -115,7 +168,10 @@ namespace OpcDaBrowser
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Servers";
             this.Load += new System.EventHandler(this.FormServerList_Load);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
+
         }
 
         private System.Windows.Forms.Button btnSelect;
@@ -127,5 +183,9 @@ namespace OpcDaBrowser
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.RichTextBox rtbText;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton1;
     }
 }

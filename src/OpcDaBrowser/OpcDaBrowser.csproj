@@ -9,7 +9,7 @@
         <LangVersion>latestmajor</LangVersion>
         <PlatformTarget>x86</PlatformTarget>
         <Prefer32bit>true</Prefer32bit>
-        <Version>2021.206.14.0</Version>
+        <Version>2021.207.13.0</Version>
         <Authors>seayxu</Authors>
         <Description>Opc Da Browser</Description>
         <Copyright>GodSharp</Copyright>
@@ -28,7 +28,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="GodSharp.Opc.Da.OpcAutomation" Version="2021.204.23" />
+      <PackageReference Include="GodSharp.Opc.Da.OpcAutomation" Version="2021.207.13" />
+      <PackageReference Include="GodSharp.Opc.Da.OpcNetApi" Version="2021.207.13" />
+    
+      <!--<ProjectReference Include="..\..\..\..\framework\src\da\GodSharp.Opc.Da.OpcAutomation\GodSharp.Opc.Da.OpcAutomation.csproj" />
+      <ProjectReference Include="..\..\..\..\framework\src\da\GodSharp.Opc.Da.OpcNetApi\GodSharp.Opc.Da.OpcNetApi.csproj" />-->
     </ItemGroup>
 
     <ItemGroup>
