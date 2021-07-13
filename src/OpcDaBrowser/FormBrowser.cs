@@ -12,8 +12,8 @@ namespace OpcDaBrowser
 {
     public partial class FormBrowser : Form
     {
-        //System.Windows.Forms.DataGridView dataGridView1;
-        System.Windows.Forms.DataGridView dataGridView1;
+        //DataGridView dataGridView1;
+        DataGridView dataGridView1;
         private IOpcDaClient _client;
         private int _id = 1;
         private readonly BindingList<ViewModel> _values = new();
@@ -21,7 +21,7 @@ namespace OpcDaBrowser
         public FormBrowser()
         {
             InitializeComponent();
-            tsmiVersion.Text = ProductVersion;
+            tsmiVersion.Text = $@"v{ProductVersion}";
             base.Text += $@" v{ProductVersion}";
             tsslOpcServerStatus.Text = @"Opc Server : Stop";
             tsslComponent.Text = null;
@@ -184,8 +184,8 @@ namespace OpcDaBrowser
         private void OnServerShutdownHandler(Server arg1, string arg2)
         {
             tsslOpcServerStatus.Text = @"Opc Server : Stop";
+            _client.Disconnect();
             OnConnectChanged(false);
-            //_client.Disconnect();
         }
 
         private void treeView1_AfterCollapse(object sender, TreeViewEventArgs e)
@@ -305,8 +305,12 @@ namespace OpcDaBrowser
 
         private void FormBrowser_FormClosed(object sender, FormClosedEventArgs e)
         {
-            GC.Collect();
+            if (_client?.Connected == true)
+            {
+                _client.Disconnect();
+            }
             _client?.Dispose();
+            GC.Collect();
         }
 
         private void FormBrowser_SizeChanged(object sender, EventArgs e)
@@ -416,6 +420,11 @@ namespace OpcDaBrowser
             {
                 MessageBox.Show(@$"Read value failed:{ex.Message}", @"Opc Da Browser", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
+        }
+
+        private void tsmiAbout_Click(object sender, EventArgs e)
+        {
+            new FormAbout().ShowDialog();
         }
     }
 }

@@ -32,11 +32,11 @@ namespace OpcDaBrowser
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBrowser));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,6 +54,7 @@ namespace OpcDaBrowser
             this.componentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiAutomation = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiOpenNetApi = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
@@ -68,15 +69,51 @@ namespace OpcDaBrowser
             this.tsmiReadValueSync = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiReadValueAsync = new System.Windows.Forms.ToolStripMenuItem();
             dataGridView1 = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(dataGridView1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.BackgroundColor = System.Drawing.Color.White;
+            dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column4,
+            this.Column5});
+            dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.Location = new System.Drawing.Point(0, 0);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
+            dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridView1.RowHeadersVisible = false;
+            dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.ShowCellErrors = false;
+            dataGridView1.ShowEditingIcon = false;
+            dataGridView1.ShowRowErrors = false;
+            dataGridView1.Size = new System.Drawing.Size(525, 431);
+            dataGridView1.TabIndex = 0;
             // 
             // Column1
             // 
@@ -103,8 +140,8 @@ namespace OpcDaBrowser
             // 
             this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Column3.DataPropertyName = "Quality";
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column3.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column3.DefaultCellStyle = dataGridViewCellStyle6;
             this.Column3.FillWeight = 60F;
             this.Column3.HeaderText = "Quality";
             this.Column3.MinimumWidth = 60;
@@ -118,8 +155,8 @@ namespace OpcDaBrowser
             // 
             this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Column4.DataPropertyName = "Timestamp";
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle7;
             this.Column4.HeaderText = "Timestamp";
             this.Column4.MinimumWidth = 130;
             this.Column4.Name = "Column4";
@@ -132,8 +169,8 @@ namespace OpcDaBrowser
             // 
             this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Column5.DataPropertyName = "Counter";
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column5.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column5.DefaultCellStyle = dataGridViewCellStyle8;
             this.Column5.FillWeight = 60F;
             this.Column5.HeaderText = "Counter";
             this.Column5.MinimumWidth = 60;
@@ -148,7 +185,8 @@ namespace OpcDaBrowser
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.serverToolStripMenuItem,
             this.groupToolStripMenuItem,
-            this.componentToolStripMenuItem});
+            this.componentToolStripMenuItem,
+            this.tsmiAbout});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(734, 24);
@@ -161,12 +199,14 @@ namespace OpcDaBrowser
             this.tsmiConnect,
             this.tsmiDisconnect,
             this.tsmiNewClient});
+            this.serverToolStripMenuItem.Image = global::OpcDaBrowser.Properties.Resources.server;
             this.serverToolStripMenuItem.Name = "serverToolStripMenuItem";
-            this.serverToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
+            this.serverToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
             this.serverToolStripMenuItem.Text = "Server";
             // 
             // tsmiConnect
             // 
+            this.tsmiConnect.Image = global::OpcDaBrowser.Properties.Resources.connected;
             this.tsmiConnect.Name = "tsmiConnect";
             this.tsmiConnect.Size = new System.Drawing.Size(133, 22);
             this.tsmiConnect.Text = "Connect";
@@ -174,6 +214,7 @@ namespace OpcDaBrowser
             // 
             // tsmiDisconnect
             // 
+            this.tsmiDisconnect.Image = global::OpcDaBrowser.Properties.Resources.disconnected;
             this.tsmiDisconnect.Name = "tsmiDisconnect";
             this.tsmiDisconnect.Size = new System.Drawing.Size(133, 22);
             this.tsmiDisconnect.Text = "Disconnect";
@@ -181,6 +222,7 @@ namespace OpcDaBrowser
             // 
             // tsmiNewClient
             // 
+            this.tsmiNewClient.Image = global::OpcDaBrowser.Properties.Resources.exit;
             this.tsmiNewClient.Name = "tsmiNewClient";
             this.tsmiNewClient.Size = new System.Drawing.Size(133, 22);
             this.tsmiNewClient.Text = "Exit";
@@ -192,12 +234,14 @@ namespace OpcDaBrowser
             this.addSelectedToolStripMenuItem,
             this.tsmiRemoveItem,
             this.tsmiRemoveAll});
+            this.groupToolStripMenuItem.Image = global::OpcDaBrowser.Properties.Resources.tag;
             this.groupToolStripMenuItem.Name = "groupToolStripMenuItem";
-            this.groupToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
+            this.groupToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
             this.groupToolStripMenuItem.Text = "Tags";
             // 
             // addSelectedToolStripMenuItem
             // 
+            this.addSelectedToolStripMenuItem.Image = global::OpcDaBrowser.Properties.Resources.add_list;
             this.addSelectedToolStripMenuItem.Name = "addSelectedToolStripMenuItem";
             this.addSelectedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.addSelectedToolStripMenuItem.Text = "Add Node";
@@ -205,6 +249,7 @@ namespace OpcDaBrowser
             // 
             // tsmiRemoveItem
             // 
+            this.tsmiRemoveItem.Image = global::OpcDaBrowser.Properties.Resources.delete_row;
             this.tsmiRemoveItem.Name = "tsmiRemoveItem";
             this.tsmiRemoveItem.Size = new System.Drawing.Size(180, 22);
             this.tsmiRemoveItem.Text = "Remove Item";
@@ -212,6 +257,7 @@ namespace OpcDaBrowser
             // 
             // tsmiRemoveAll
             // 
+            this.tsmiRemoveAll.Image = global::OpcDaBrowser.Properties.Resources.delete_property;
             this.tsmiRemoveAll.Name = "tsmiRemoveAll";
             this.tsmiRemoveAll.Size = new System.Drawing.Size(180, 22);
             this.tsmiRemoveAll.Text = "Remove All";
@@ -222,8 +268,9 @@ namespace OpcDaBrowser
             this.componentToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiAutomation,
             this.tsmiOpenNetApi});
+            this.componentToolStripMenuItem.Image = global::OpcDaBrowser.Properties.Resources.dharmacakra;
             this.componentToolStripMenuItem.Name = "componentToolStripMenuItem";
-            this.componentToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
+            this.componentToolStripMenuItem.Size = new System.Drawing.Size(99, 20);
             this.componentToolStripMenuItem.Text = "Component";
             // 
             // tsmiAutomation
@@ -231,16 +278,26 @@ namespace OpcDaBrowser
             this.tsmiAutomation.Checked = true;
             this.tsmiAutomation.CheckOnClick = true;
             this.tsmiAutomation.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.tsmiAutomation.Image = global::OpcDaBrowser.Properties.Resources.tire;
             this.tsmiAutomation.Name = "tsmiAutomation";
-            this.tsmiAutomation.Size = new System.Drawing.Size(140, 22);
+            this.tsmiAutomation.Size = new System.Drawing.Size(180, 22);
             this.tsmiAutomation.Text = "Automation";
             // 
             // tsmiOpenNetApi
             // 
             this.tsmiOpenNetApi.CheckOnClick = true;
+            this.tsmiOpenNetApi.Image = global::OpcDaBrowser.Properties.Resources.wheel;
             this.tsmiOpenNetApi.Name = "tsmiOpenNetApi";
-            this.tsmiOpenNetApi.Size = new System.Drawing.Size(140, 22);
+            this.tsmiOpenNetApi.Size = new System.Drawing.Size(180, 22);
             this.tsmiOpenNetApi.Text = "OpenNetApi";
+            // 
+            // tsmiAbout
+            // 
+            this.tsmiAbout.Image = global::OpcDaBrowser.Properties.Resources.about;
+            this.tsmiAbout.Name = "tsmiAbout";
+            this.tsmiAbout.Size = new System.Drawing.Size(68, 20);
+            this.tsmiAbout.Text = "About";
+            this.tsmiAbout.Click += new System.EventHandler(this.tsmiAbout_Click);
             // 
             // splitContainer1
             // 
@@ -287,42 +344,6 @@ namespace OpcDaBrowser
             this.imageList1.Images.SetKeyName(3, "folder-1.png");
             this.imageList1.Images.SetKeyName(4, "folder-open-0.png");
             this.imageList1.Images.SetKeyName(5, "folder-open-1.png");
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
-            dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4,
-            this.Column5});
-            dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.Location = new System.Drawing.Point(0, 0);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.ReadOnly = true;
-            dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridView1.RowHeadersVisible = false;
-            dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.ShowCellErrors = false;
-            dataGridView1.ShowEditingIcon = false;
-            dataGridView1.ShowRowErrors = false;
-            dataGridView1.Size = new System.Drawing.Size(525, 431);
-            dataGridView1.TabIndex = 0;
             // 
             // statusStrip1
             // 
@@ -371,33 +392,33 @@ namespace OpcDaBrowser
             this.tsmiReadValueSync,
             this.tsmiReadValueAsync});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 114);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(169, 92);
             // 
             // tsmiWriteValueSync
             // 
             this.tsmiWriteValueSync.Name = "tsmiWriteValueSync";
-            this.tsmiWriteValueSync.Size = new System.Drawing.Size(180, 22);
+            this.tsmiWriteValueSync.Size = new System.Drawing.Size(168, 22);
             this.tsmiWriteValueSync.Text = "Write Value Sync";
             this.tsmiWriteValueSync.Click += new System.EventHandler(this.tsmiWriteValueSync_Click);
             // 
             // tsmiWriteValueAsync
             // 
             this.tsmiWriteValueAsync.Name = "tsmiWriteValueAsync";
-            this.tsmiWriteValueAsync.Size = new System.Drawing.Size(180, 22);
+            this.tsmiWriteValueAsync.Size = new System.Drawing.Size(168, 22);
             this.tsmiWriteValueAsync.Text = "Write Value Async";
             this.tsmiWriteValueAsync.Click += new System.EventHandler(this.tsmiWriteValueAsync_Click);
             // 
             // tsmiReadValueSync
             // 
             this.tsmiReadValueSync.Name = "tsmiReadValueSync";
-            this.tsmiReadValueSync.Size = new System.Drawing.Size(180, 22);
+            this.tsmiReadValueSync.Size = new System.Drawing.Size(168, 22);
             this.tsmiReadValueSync.Text = "Read Value Sync";
             this.tsmiReadValueSync.Click += new System.EventHandler(this.tsmiReadValueSync_Click);
             // 
             // tsmiReadValueAsync
             // 
             this.tsmiReadValueAsync.Name = "tsmiReadValueAsync";
-            this.tsmiReadValueAsync.Size = new System.Drawing.Size(180, 22);
+            this.tsmiReadValueAsync.Size = new System.Drawing.Size(168, 22);
             this.tsmiReadValueAsync.Text = "Read value Async";
             this.tsmiReadValueAsync.Click += new System.EventHandler(this.tsmiReadValueAsync_Click);
             // 
@@ -418,13 +439,13 @@ namespace OpcDaBrowser
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormBrowser_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormBrowser_FormClosed);
             this.SizeChanged += new System.EventHandler(this.FormBrowser_SizeChanged);
+            ((System.ComponentModel.ISupportInitialize)(dataGridView1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(dataGridView1)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
@@ -468,5 +489,6 @@ namespace OpcDaBrowser
         private System.Windows.Forms.ToolStripMenuItem tsmiWriteValueAsync;
         private System.Windows.Forms.ToolStripMenuItem tsmiReadValueSync;
         private System.Windows.Forms.ToolStripMenuItem tsmiReadValueAsync;
+        private System.Windows.Forms.ToolStripMenuItem tsmiAbout;
     }
 }
