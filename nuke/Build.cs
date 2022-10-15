@@ -10,6 +10,8 @@ using Nuke.Common.Tools.GitVersion;
 using Nuke.Common.Tools.MSBuild;
 using Nuke.Common.Utilities.Collections;
 
+using Serilog;
+
 using System;
 using System.IO;
 using System.IO.Compression;
@@ -34,10 +36,6 @@ internal partial class Build : NukeBuild
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
     private readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
 
-    [Parameter("GitHub Authentication Token")]
-    [Secret]
-    private string GhAccessToken;
-
     [Solution] private readonly Solution Solution;
 
     [GitRepository] private readonly GitRepository GitRepository;
@@ -54,7 +52,7 @@ internal partial class Build : NukeBuild
     protected override void OnBuildInitialized()
     {
         base.OnBuildInitialized();
-        GhAccessToken ??= Environment.GetEnvironmentVariable(nameof(GhAccessToken));
+        //GhAccessToken ??= Environment.GetEnvironmentVariable(nameof(GhAccessToken));
         Enum.TryParse(Host.GetType().Name, true, out HostType);
     }
 
@@ -130,7 +128,7 @@ internal partial class Build : NukeBuild
         .DependsOn(Publish)
         .Executes(() =>
         {
-            Logger.Info("Delete output..");
+            Log.Information("Delete output..");
             PublishDirectory.GlobDirectories("**/output").ForEach(DeleteDirectory);
         });
 
@@ -164,9 +162,9 @@ internal partial class Build : NukeBuild
         .Executes(() =>
         {
             if (HostType != HostType.AzurePipelines) return;
-            Logger.Info("Upload artifacts to azure...");
+            Log.Information("Upload artifacts to azure...");
             AzurePipelines
                 .UploadArtifacts("artifacts", "artifacts", ArtifactsDirectory);
-            Logger.Info("Upload artifacts to azure finished.");
+            Log.Information("Upload artifacts to azure finished.");
         });
 }
