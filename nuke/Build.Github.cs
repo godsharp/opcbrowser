@@ -29,10 +29,6 @@ using System.Threading.Tasks;
 )]
 internal partial class Build
 {
-    [Parameter("GitHub Authentication Token")]
-    [Secret]
-    private string GhAccessToken;
-
     private Target Deploy => _ => _
         .Description("Deploy")
         .DependsOn(Artifacts)

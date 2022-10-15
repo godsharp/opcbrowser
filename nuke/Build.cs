@@ -1,6 +1,7 @@
 using Nuke.Common;
 using Nuke.Common.CI;
 using Nuke.Common.CI.AzurePipelines;
+using Nuke.Common.CI.GitHubActions;
 using Nuke.Common.Execution;
 using Nuke.Common.Git;
 using Nuke.Common.IO;
@@ -35,13 +36,17 @@ internal partial class Build : NukeBuild
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
     private readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
 
+    [Parameter("GitHub Authentication Token")]
+    [Secret]
+    private string GhAccessToken;
+
     [Solution] private readonly Solution Solution;
 
     [GitRepository] private readonly GitRepository GitRepository;
     [GitVersion(Framework = "net5.0", NoFetch = true)] private readonly GitVersion GitVersion;
 
     [CI] private readonly AzurePipelines AzurePipelines;
-    //[CI] private readonly GitHubActions GitHubActions = GitHubActions.Instance;
+    [CI] private readonly GitHubActions GitHubActions;
 
     private AbsolutePath SourceDirectory => RootDirectory / "src";
     private AbsolutePath PublishDirectory => RootDirectory / "publish";
