@@ -30,4 +30,4 @@ jobs:
       - name: Run './build.cmd Deploy'
         run: ./build.cmd Deploy
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GhAccessToken: ${{ secrets.GH_ACCESS_TOKEN }}

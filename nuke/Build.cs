@@ -1,7 +1,6 @@
 using Nuke.Common;
 using Nuke.Common.CI;
 using Nuke.Common.CI.AzurePipelines;
-using Nuke.Common.CI.GitHubActions;
 using Nuke.Common.Execution;
 using Nuke.Common.Git;
 using Nuke.Common.IO;
@@ -42,7 +41,7 @@ internal partial class Build : NukeBuild
     [GitVersion(Framework = "net5.0", NoFetch = true)] private readonly GitVersion GitVersion;
 
     [CI] private readonly AzurePipelines AzurePipelines;
-    [CI] private readonly GitHubActions GitHubActions;
+    //[CI] private readonly GitHubActions GitHubActions = GitHubActions.Instance;
 
     private AbsolutePath SourceDirectory => RootDirectory / "src";
     private AbsolutePath PublishDirectory => RootDirectory / "publish";

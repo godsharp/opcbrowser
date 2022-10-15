@@ -24,13 +24,14 @@ using System.Threading.Tasks;
     // On = new[] { GitHubActionsTrigger.Push },
     OnPushBranches = new[] { "main" },
     InvokedTargets = new[] { nameof(Deploy) },
-    //ImportSecrets = new[] { nameof(GhAccessToken) },
-    CacheKeyFiles = new string[0],
-    EnableGitHubToken = true
+    ImportSecrets = new[] { nameof(GhAccessToken) },
+    CacheKeyFiles = new string[0]
 )]
 internal partial class Build
 {
-    private GitHubActions GitHub => GitHubActions.Instance;
+    [Parameter("GitHub Authentication Token")]
+    [Secret]
+    private string GhAccessToken;
 
     private Target Deploy => _ => _
         .Description("Deploy")
@@ -40,7 +41,7 @@ internal partial class Build
         .OnlyWhenDynamic(() => GitVersion.BranchName.Equals("main") || GitVersion.BranchName.Equals("origin/main"))
         .Executes(async () =>
         {
-            if (string.IsNullOrWhiteSpace(GitHub.Token)) Assert.Fail($"{nameof(GitHub.Token)} is null");
+            if (string.IsNullOrWhiteSpace(GhAccessToken)) Assert.Fail($"{nameof(GhAccessToken)} is null");
             Log.Information("Release to github...");
             await PublishAndUploadToGitHubRelease(GitVersion);
             Log.Information("Release to github finished.");
@@ -53,7 +54,7 @@ internal partial class Build
             var releaseTag = $"v{DateTime.Now:yyyyMMddHHmmss}";
             GitHubTasks.GitHubClient = new GitHubClient(new ProductHeaderValue(nameof(NukeBuild)))
             {
-                Credentials = new Credentials(GitHub.Token, AuthenticationType.Bearer)
+                Credentials = new Credentials(GhAccessToken, AuthenticationType.Bearer)
             };
 
             var (repositoryOwner, repositoryName) = GitRepository.GetGitHubRepositoryInfo();
