@@ -26,7 +26,7 @@ jobs:
     name: windows-latest
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
       - name: Run './build.cmd Deploy'
         run: ./build.cmd Deploy
         env:
