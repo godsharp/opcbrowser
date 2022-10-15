@@ -1,20 +1,15 @@
-﻿using Microsoft.AspNetCore.StaticFiles;
-
+﻿using System;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.StaticFiles;
 using Nuke.Common;
 using Nuke.Common.CI.GitHubActions;
 using Nuke.Common.IO;
 using Nuke.Common.Tools.GitHub;
 using Nuke.Common.Tools.GitVersion;
 using Nuke.Common.Utilities.Collections;
-
 using Octokit;
-
-using Serilog;
-
-using System;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 
 [GitHubActions(
     "continuous",
@@ -22,14 +17,14 @@ using System.Threading.Tasks;
     AutoGenerate = true,
     PublishArtifacts = true,
     // On = new[] { GitHubActionsTrigger.Push },
-    OnPushBranches = new[] { "main" },
-    InvokedTargets = new[] { nameof(Deploy) },
-    ImportSecrets = new[] { nameof(GhAccessToken) },
+    OnPushBranches = new []{"main"},
+    InvokedTargets = new []{nameof(Deploy)},
+    ImportSecrets = new []{nameof(GhAccessToken)},
     CacheKeyFiles = new string[0]
 )]
-internal partial class Build
+partial class Build
 {
-    private Target Deploy => _ => _
+    Target Deploy => _ => _
         .Description("Deploy")
         .DependsOn(Artifacts)
         .WhenSkipped(DependencyBehavior.Execute)
@@ -37,13 +32,13 @@ internal partial class Build
         .OnlyWhenDynamic(() => GitVersion.BranchName.Equals("main") || GitVersion.BranchName.Equals("origin/main"))
         .Executes(async () =>
         {
-            if (string.IsNullOrWhiteSpace(GhAccessToken)) Assert.Fail($"{nameof(GhAccessToken)} is null");
-            Log.Information("Release to github...");
+            if(string.IsNullOrWhiteSpace(GhAccessToken)) ControlFlow.Fail($"{nameof(GhAccessToken)} is null");
+            Logger.Info("Release to github...");
             await PublishAndUploadToGitHubRelease(GitVersion);
-            Log.Information("Release to github finished.");
+            Logger.Info("Release to github finished.");
         });
-
-    private async Task PublishAndUploadToGitHubRelease(GitVersion git)
+    
+    async Task PublishAndUploadToGitHubRelease(GitVersion git)
     {
         try
         {
@@ -81,8 +76,8 @@ internal partial class Build
         //     .Repository.Release
         //     .Edit(repositoryOwner, repositoryName, createdRelease.Id, new ReleaseUpdate { Draft = false });
     }
-
-    private Task UploadReleaseAssetToGithub(Release release, AbsolutePath asset)
+    
+    Task UploadReleaseAssetToGithub(Release release, AbsolutePath asset)
     {
         if (!FileSystemTasks.FileExists(asset)) return Task.CompletedTask;
 
@@ -97,7 +92,7 @@ internal partial class Build
             FileName = Path.GetFileName(asset),
             RawData = File.OpenRead(asset)
         };
-
+        
         return GitHubTasks.GitHubClient.Repository.Release.UploadAsset(release, releaseAssetUpload);
     }
 }

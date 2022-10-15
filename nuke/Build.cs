@@ -2,14 +2,13 @@ using Nuke.Common;
 using Nuke.Common.CI;
 using Nuke.Common.CI.AzurePipelines;
 using Nuke.Common.CI.GitHubActions;
+using Nuke.Common.Execution;
 using Nuke.Common.Git;
 using Nuke.Common.IO;
 using Nuke.Common.ProjectModel;
 using Nuke.Common.Tools.GitVersion;
 using Nuke.Common.Tools.MSBuild;
 using Nuke.Common.Utilities.Collections;
-
-using Serilog;
 
 using System;
 using System.IO;
@@ -21,6 +20,7 @@ using static Nuke.Common.IO.PathConstruction;
 using static Nuke.Common.Tools.MSBuild.MSBuildTasks;
 // ReSharper disable InconsistentNaming
 
+[CheckBuildProjectConfigurations]
 internal partial class Build : NukeBuild
 {
     /// Support plugins are available for:
@@ -41,7 +41,7 @@ internal partial class Build : NukeBuild
     [Solution] private readonly Solution Solution;
 
     [GitRepository] private readonly GitRepository GitRepository;
-    [GitVersion(Framework = "net6.0", NoFetch = true)] private readonly GitVersion GitVersion;
+    [GitVersion(Framework = "net5.0", NoFetch = true)] private readonly GitVersion GitVersion;
 
     [CI] private readonly AzurePipelines AzurePipelines;
     [CI] private readonly GitHubActions GitHubActions;
@@ -130,7 +130,7 @@ internal partial class Build : NukeBuild
         .DependsOn(Publish)
         .Executes(() =>
         {
-            Log.Information("Delete output..");
+            Logger.Info("Delete output..");
             PublishDirectory.GlobDirectories("**/output").ForEach(DeleteDirectory);
         });
 
@@ -164,9 +164,9 @@ internal partial class Build : NukeBuild
         .Executes(() =>
         {
             if (HostType != HostType.AzurePipelines) return;
-            Log.Information("Upload artifacts to azure...");
+            Logger.Info("Upload artifacts to azure...");
             AzurePipelines
                 .UploadArtifacts("artifacts", "artifacts", ArtifactsDirectory);
-            Log.Information("Upload artifacts to azure finished.");
+            Logger.Info("Upload artifacts to azure finished.");
         });
 }
