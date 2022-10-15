@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
+
 // ReSharper disable InconsistentNaming
 
 namespace OpcDaBrowser
@@ -13,7 +14,8 @@ namespace OpcDaBrowser
     public partial class FormBrowser : Form
     {
         //DataGridView dataGridView1;
-        DataGridView dataGridView1;
+        private DataGridView dataGridView1;
+
         private IOpcDaClient _client;
         private int _id = 1;
         private readonly BindingList<ViewModel> _values = new();
@@ -44,7 +46,6 @@ namespace OpcDaBrowser
 
         private void UpdateDataGridState()
         {
-
             var has = dataGridView1.Rows.Count > 0;
             tsmiRemoveItem.Enabled = has;
             tsmiRemoveAll.Enabled = has;
@@ -102,13 +103,13 @@ namespace OpcDaBrowser
             _values.Clear();
             treeView1.Nodes.Clear();
 
-            var root = new TreeNode(server){ ImageIndex = 0, SelectedImageIndex = 1};
+            var root = new TreeNode(server) { ImageIndex = 0, SelectedImageIndex = 1 };
             treeView1.Nodes.Add(root);
 
             Func<Action<DaClientOptions>, IOpcDaClient> factory = tsmiAutomation.Checked
                 ? DaClientFactory.Instance.CreateOpcAutomationClient
                 : DaClientFactory.Instance.CreateOpcNetApiClient;
-            
+
             _client = factory(x =>
             {
                 x.Data = new ServerData
@@ -124,61 +125,62 @@ namespace OpcDaBrowser
             });
 
             _client.Connect();
-            _client.Add(new Group {Name = "default", UpdateRate = 100});
+            _client.Add(new Group { Name = "default", UpdateRate = 100, IsSubscribed = true });
 
             tsslOpcServerStatus.Text = $@"Opc Server : {(_client.Connected ? "Run" : "Stop")}";
             tsslComponent.Text = $@"Component: {(tsmiAutomation.Checked ? "Automation" : "NetApi")}";
             OnConnectChanged(_client.Connected);
 
-            var list = _client.BrowseNodes();
+            var list = _client.BrowseNodeTree();
 
             if (list == null) return;
 
             Dictionary<string, TreeNode> tree = new();
-            var one = new List<string>();
+            NodeTree(list, tree);
 
-            foreach (var item in list)
-            {
-                var array = item.Split('.');
-                string name = null;
-                for (var i = 0; i < array.Length; i++)
-                {
-                    var tmp = array[i];
-                    var parent = name;
-                    if (i == 0)
-                    {
-                        name = tmp;
-                        if (!one.Contains(name)) one.Add(name);
-                    }
-                    else
-                    {
-                        name += $".{tmp}";
-                    }
-
-                    TreeNode node;
-                    if (!tree.ContainsKey(name))
-                    {
-                        node = new TreeNode(tmp) {Name = tmp, Tag = name, ImageIndex = 0, SelectedImageIndex = 1};
-                        tree.Add(name, node);
-                    }
-                    else
-                    {
-                        node = tree[name];
-                    }
-
-                    if (parent == null) continue;
-                    if (tree[parent].Nodes.ContainsKey(tmp)) continue;
-
-                    tree[parent].Nodes.Add(node);
-                    tree[parent].ImageIndex = 2;
-                    tree[parent].SelectedImageIndex = 3;
-                }
-            }
-
-            var nodes = tree.Where(x => one.Contains(x.Key)).Select(x => x.Value).ToArray();
+            var nodes = tree.Where(x => list.Any(a=>a.Name==x.Key)).Select(x => x.Value).ToArray();
             root.Nodes.AddRange(nodes);
-            treeView1.ExpandAll();
+            root.Expand();
             UpdateDataGridState();
+        }
+
+        private void NodeTree(IEnumerable<BrowseNode> nodes, Dictionary<string, TreeNode> tree, string parent = null)
+        {
+            foreach (var item in nodes)
+            {
+                TreeNode node;
+                if (item.Branch == null)
+                {
+                    if (item.IsLeaf)
+                    {
+                        node = new TreeNode(item.Name) { Name = item.Name, Tag = item.Full, ImageIndex = 0, SelectedImageIndex = 1 };
+                    }
+                    else
+                    {
+                        node = new TreeNode(item.Name) { Name = item.Name, Tag = item.Full, ImageIndex = 2, SelectedImageIndex = 3 };
+                    }
+                }
+                else
+                {
+                    if (item.IsLeaf)
+                    {
+                        node = new TreeNode(item.Name) { Name = item.Name, Tag = item.Full, ImageIndex = 0, SelectedImageIndex = 1 };
+                    }
+                    else
+                    {
+                        node = new TreeNode(item.Name) { Name = item.Name, Tag = item.Full, ImageIndex = 2, SelectedImageIndex = 3 };
+                    }
+                }
+
+                tree.Add(item.Full, node);
+
+                if (!item.IsLeaf && item.Childs != null && item.Childs.Any())
+                {
+                    NodeTree(item.Childs, tree, item.Full);
+                }
+
+                if (parent != null && node != null) tree[parent].Nodes.Add(node);
+            }
         }
 
         private void OnServerShutdownHandler(Server arg1, string arg2)
@@ -210,7 +212,7 @@ namespace OpcDaBrowser
 
         private void Monitor(TreeNode node)
         {
-            if(node.Nodes.Count>0)
+            if (node.Nodes.Count > 0)
             {
                 foreach (TreeNode item in node.Nodes) Monitor(item);
             }
@@ -253,12 +255,12 @@ namespace OpcDaBrowser
 
         private void tsmiDisconnect_Click(object sender, EventArgs e)
         {
-           var ret = _client.Disconnect();
-           _client.Dispose();
-           GC.Collect();
-           tsslOpcServerStatus.Text = $@"Opc Server : {(!ret ? "Run" : "Stop")}";
-           OnConnectChanged(!ret);
-           _values.Clear();
+            var ret = _client.Disconnect();
+            _client.Dispose();
+            GC.Collect();
+            tsslOpcServerStatus.Text = $@"Opc Server : {(!ret ? "Run" : "Stop")}";
+            OnConnectChanged(!ret);
+            _values.Clear();
         }
 
         private void tsmiNewClient_Click(object sender, EventArgs e)
@@ -330,7 +332,6 @@ namespace OpcDaBrowser
 
         private void WriteValue(bool sync)
         {
-
             try
             {
                 var vm = dataGridView1.SelectedRows[0].DataBoundItem as ViewModel;
@@ -344,7 +345,6 @@ namespace OpcDaBrowser
 
         private void WriteValue(bool sync, ViewModel vm, string value)
         {
-
             try
             {
                 var result = sync ? _client.Current.Write(vm.ItemName, value) : _client.Current.WriteAsync(vm.ItemName, value);
@@ -400,6 +400,18 @@ namespace OpcDaBrowser
         {
             try
             {
+                DataGridViewRow _row = dataGridView1.SelectedRows[0] as DataGridViewRow;
+                var _vm = _row.DataBoundItem as ViewModel;
+                if (_vm == null) return;
+                string str = null;
+                var props = _client.GetItemProperties(_vm.ItemName);
+                foreach (var item in props)
+                {
+                    str += $"{item.Value.Description}/{item.Value.Value}/{item.Value.DataType}/{(System.Runtime.InteropServices.VarEnum)item.Value.DataType}\r\n";
+                }
+                MessageBox.Show(str);
+                return;
+
                 List<ViewModel> list = new();
                 foreach (DataGridViewRow row in dataGridView1.SelectedRows)
                 {

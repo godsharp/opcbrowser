@@ -1,7 +1,8 @@
-﻿using System;
+﻿using GodSharp.Opc.Da;
+
+using System;
 using System.Linq;
 using System.Windows.Forms;
-using GodSharp.Opc.Da;
 
 namespace OpcDaBrowser
 {
@@ -10,8 +11,8 @@ namespace OpcDaBrowser
         private readonly Action<string> _onServerSelected;
         private string _server;
         private IServerDiscovery _discovery;
-        
-        public FormServerList(Action<string> onServerSelected,bool openNetApi=false)
+
+        public FormServerList(Action<string> onServerSelected, bool openNetApi = false)
         {
             _onServerSelected = onServerSelected;
             InitializeComponent();
@@ -29,7 +30,7 @@ namespace OpcDaBrowser
         private void lvServer_SelectedIndexChanged(object sender, EventArgs e)
         {
             _server = null;
-            if (lvServer.SelectedIndices.Count==0 || lvServer.SelectedIndices[0]<0) return;
+            if (lvServer.SelectedIndices.Count == 0 || lvServer.SelectedIndices[0] < 0) return;
             var item = lvServer.SelectedItems[0];
             _server = item.Text;
             rtbText.Text = null;
@@ -41,15 +42,15 @@ namespace OpcDaBrowser
         {
             try
             {
-                if(lvServer.Items.Count>0) lvServer.Items.Clear();
+                if (lvServer.Items.Count > 0) lvServer.Items.Clear();
                 rtbText.ResetText();
                 var servers = _discovery.GetServers(GetServerSpecification());
 
                 if (servers == null || servers.Length == 0) return;
                 foreach (var item in servers)
                 {
-                    if (item.Any(x=>!char.IsLetterOrDigit(x) && x!='.')) continue;
-                    
+                    if (item.Any(x => !char.IsLetterOrDigit(x) && x != '.')) continue;
+
                     var type = Type.GetTypeFromProgID(item);
                     var lvi = new ListViewItem(item);
                     lvi.SubItems.Add(type.GUID.ToString("D").ToUpper());
