@@ -2,7 +2,6 @@ using Nuke.Common;
 using Nuke.Common.CI;
 using Nuke.Common.CI.AzurePipelines;
 using Nuke.Common.CI.GitHubActions;
-using Nuke.Common.Execution;
 using Nuke.Common.Git;
 using Nuke.Common.IO;
 using Nuke.Common.ProjectModel;
@@ -22,7 +21,6 @@ using static Nuke.Common.IO.PathConstruction;
 using static Nuke.Common.Tools.MSBuild.MSBuildTasks;
 // ReSharper disable InconsistentNaming
 
-[CheckBuildProjectConfigurations]
 internal partial class Build : NukeBuild
 {
     /// Support plugins are available for:
