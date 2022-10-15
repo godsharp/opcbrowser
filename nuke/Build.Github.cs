@@ -9,6 +9,8 @@ using Nuke.Common.Utilities.Collections;
 
 using Octokit;
 
+using Serilog;
+
 using System;
 using System.IO;
 using System.Linq;
@@ -35,10 +37,10 @@ internal partial class Build
         .OnlyWhenDynamic(() => GitVersion.BranchName.Equals("main") || GitVersion.BranchName.Equals("origin/main"))
         .Executes(async () =>
         {
-            if (string.IsNullOrWhiteSpace(GhAccessToken)) ControlFlow.Fail($"{nameof(GhAccessToken)} is null");
-            Logger.Info("Release to github...");
+            if (string.IsNullOrWhiteSpace(GhAccessToken)) Assert.Fail($"{nameof(GhAccessToken)} is null");
+            Log.Information("Release to github...");
             await PublishAndUploadToGitHubRelease(GitVersion);
-            Logger.Info("Release to github finished.");
+            Log.Information("Release to github finished.");
         });
 
     private async Task PublishAndUploadToGitHubRelease(GitVersion git)
@@ -73,7 +75,7 @@ internal partial class Build
         }
         catch (Exception e)
         {
-            Logger.Error(e);
+            Log.Error(e, null);
         }
         // await GitHubTasks.GitHubClient
         //     .Repository.Release

@@ -10,6 +10,8 @@ using Nuke.Common.Tools.GitVersion;
 using Nuke.Common.Tools.MSBuild;
 using Nuke.Common.Utilities.Collections;
 
+using Serilog;
+
 using System;
 using System.IO;
 using System.IO.Compression;
@@ -130,7 +132,7 @@ internal partial class Build : NukeBuild
         .DependsOn(Publish)
         .Executes(() =>
         {
-            Logger.Info("Delete output..");
+            Log.Information("Delete output..");
             PublishDirectory.GlobDirectories("**/output").ForEach(DeleteDirectory);
         });
 
@@ -164,9 +166,9 @@ internal partial class Build : NukeBuild
         .Executes(() =>
         {
             if (HostType != HostType.AzurePipelines) return;
-            Logger.Info("Upload artifacts to azure...");
+            Log.Information("Upload artifacts to azure...");
             AzurePipelines
                 .UploadArtifacts("artifacts", "artifacts", ArtifactsDirectory);
-            Logger.Info("Upload artifacts to azure finished.");
+            Log.Information("Upload artifacts to azure finished.");
         });
 }
