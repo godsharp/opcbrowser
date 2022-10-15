@@ -30,9 +30,6 @@
     <ItemGroup>
       <PackageReference Include="GodSharp.Opc.Da.OpcAutomation" Version="2022.308.10" />
       <PackageReference Include="GodSharp.Opc.Da.OpcNetApi" Version="2022.308.10" />
-    
-      <!--<ProjectReference Include="..\..\..\..\framework\src\da\GodSharp.Opc.Da.OpcAutomation\GodSharp.Opc.Da.OpcAutomation.csproj" />
-      <ProjectReference Include="..\..\..\..\framework\src\da\GodSharp.Opc.Da.OpcNetApi\GodSharp.Opc.Da.OpcNetApi.csproj" />-->
     </ItemGroup>
 
     <ItemGroup>
