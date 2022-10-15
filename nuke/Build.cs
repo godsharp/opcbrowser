@@ -43,7 +43,7 @@ internal partial class Build : NukeBuild
     [Solution] private readonly Solution Solution;
 
     [GitRepository] private readonly GitRepository GitRepository;
-    [GitVersion(Framework = "net5.0", NoFetch = true)] private readonly GitVersion GitVersion;
+    [GitVersion(Framework = "net6.0", NoFetch = true)] private readonly GitVersion GitVersion;
 
     [CI] private readonly AzurePipelines AzurePipelines;
     [CI] private readonly GitHubActions GitHubActions;
@@ -138,6 +138,7 @@ internal partial class Build : NukeBuild
 
     private Target Compress => _ => _
         //.DependsOn(Publish)
+        .Produces(ArtifactsDirectory / "app" / "*")
         .DependsOn(Publish, Delete)
         .OnlyWhenStatic(() => IsServerBuild, () => Configuration.Equals(Configuration.Release))
         .Description("Compress Publish")
