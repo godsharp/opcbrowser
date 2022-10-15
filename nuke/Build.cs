@@ -51,7 +51,7 @@ internal partial class Build : NukeBuild
     protected override void OnBuildInitialized()
     {
         base.OnBuildInitialized();
-        //GhAccessToken ??= Environment.GetEnvironmentVariable(nameof(GhAccessToken));
+        GhAccessToken ??= Environment.GetEnvironmentVariable(nameof(GhAccessToken));
         Enum.TryParse(Host.GetType().Name, true, out HostType);
     }
 
